@@ -3,39 +3,28 @@
 #define all(x) (x).begin(), (x).end()
 typedef long long ll;
 using namespace std;
+ll INF = 1e12;
 
 int main() {
     int N, W;
     cin >> N >> W;
-    vector<int> weight(N);
-    vector<int> value(N);
-    rep(i, N) cin >> weight[i] >> value[i];
-    vector<vector<ll>> dp(N + 1, vector<ll>(100001, 0));
+    vector<int> w(N);
+    vector<int> v(N);
+    rep(i, N) cin >> w[i] >> v[i];
 
-    rep(n, N + 1) rep(v, 100001) {
-        if (n == 0 || v == 0) {
-            dp[n][v] = 0;
-            continue;
-        }
+    vector<vector<ll>> dp(N + 1, vector<ll>(N * 1000 + 1,INF));
 
-        int wei = weight[n - 1];
-        int val = value[n - 1];
-        dp[n][v] =
-            max(dp[n - 1][v], (v - val < 0 ? 0 : dp[n - 1][v - val] + wei));
+    dp[0][0] = 0;
+    rep(i, N) rep(val, N * 1000 + 1) {
+        dp[i+1][val] = min(dp[i+1][val],dp[i][val]);
+        if(val+v[i] > N*1000) continue;
+        dp[i+1][val+v[i]] = min(dp[i+1][val+v[i]],dp[i][val]+w[i]);
     }
 
-    rep(n, 35) {
-        printf("dp[N][%d] = %lld\n", n, dp[N][n]);
-    }
-
-    int ans = 0;
-    ll val  = 0;
-    rep(i, 100001) {
-        if (dp[N][i] > W) break;
-        if (dp[N][i] != val) {
-            val = max(dp[N][i], val);
-            ans = i;
+    for (int i = N * 1000; i >= 1; i--) {
+        if (dp[N][i] <= W) {
+            cout << i << endl;
+            return 0;
         }
     }
-    cout << ans << endl;
 }
