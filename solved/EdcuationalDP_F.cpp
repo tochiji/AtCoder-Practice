@@ -21,11 +21,11 @@ int main() {
     int i = sN;
     int j = tN;
     while(i>=1 && j>=1){
-        if(dp[i][j] == dp[i-1][j]){
+        if(dp[i][j] == dp[i-1][j]){ //縦が一緒なら下がる
             i--;
-        } else if(dp[i][j]== dp[i][j-1]) {
+        } else if(dp[i][j]== dp[i][j-1]) { //横が一緒なら左に行く
             j--;
-        } else {
+        } else { //縦も横も違うなら左上に逃げる。逃げる前に文字を追加する。
             ans = s[i-1] + ans;
             i--;j--;
         }
