@@ -9,19 +9,18 @@ int main() {
     cin >> N;
     string S;
     cin >> S;
+    vector<vector<int>> dp(N + 1, vector<int>(N + 1, 0));
 
-    map<string, int> mp;
+    for (int i = N - 1; i >= 0; i--)
+        for (int j = N - 1; j >= 0; j--) {
+            if (S[i] == S[j]) dp[i][j] = dp[i + 1][j + 1] + 1;
+        }
+
     int ans = 0;
-    rep(i, N) {
-        for (int k = 1; k <= N - i; k++) {
-            string t = S.substr(i, k);
-            int n    = t.size();
-            if (mp.count(t) == 0) {
-                mp[t] = i;
-            }
-            else {
-                if (i - n >= mp[t]) ans = max(ans, n);
-            }
+    rep(i, N) rep(j, N) {
+        int n = dp[i][j];
+        if (j - n >= i) {
+            ans = max(ans, n);
         }
     }
     cout << ans << endl;
