@@ -42,6 +42,26 @@ int main(){
   cout << lower_bound(d.begin(),d.end(),2) - d.begin() << endl; // 1
   cout << lower_bound(d.begin(),d.end(),10) - d.begin() << endl; // 3
 
+  // lower_boundの性質
+  cout << endl;
+  cout << "lower_bound" << endl;
+  vector<int> p(4);
+  p[0] = -1;
+  p[1] = 999;
+  p[2] = 999;
+  p[3] = 999;
+
+  cout << lower_bound(p.begin(),p.end(),-2) - p.begin() << endl;
+  // 0 初項より小さければ0
+  cout << lower_bound(p.begin(),p.end(),-1) - p.begin() << endl;
+  // 0 ある項と同じならそのindex
+  cout << lower_bound(p.begin(),p.end(),0) - p.begin() << endl;
+  // 1 ある項より大きければその次のindex
+  cout << lower_bound(p.begin(),p.end(),999) - p.begin() << endl;
+  // 1 連続する数値のときは連続する一番はじめのindex
+  cout << lower_bound(p.begin(),p.end(),1000) - p.begin() << endl;
+  // 4 一番右より大きい場合は、配列の最後
+  cout << endl;
 
   // 文字列検索
   string s = "aaakyotobbb";
