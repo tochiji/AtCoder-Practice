@@ -5,7 +5,6 @@ typedef long long ll;
 using namespace std;
 
 struct distination {
-    int from;
     int to;
     int distance;
 };
@@ -17,24 +16,25 @@ vector<int> ans;
 void dfs(int root, int p, int n) {
     ans[root] = n;
     for(auto e:G[root]){
-      if(ans[e.to] != -1) continue;
-      dfs(e.to,root,(n+e.distance)%2);
+      if(e.to == p) continue;
+      if(e.distance&1) dfs(e.to,root,1-n);
+      else dfs(e.to,root,n);
     }
 }
 
 int main() {
     cin >> N;
     G.resize(N);
-    rep(i, N) {
+    rep(i, N-1) {
         int from, to, distance;
         cin >> from >> to >> distance;
         from--;
         to--;
-        distance = (distance % 2 == 1) ? 1 : 0;
-        G[from].push_back({from, to, distance});
-        G[to].push_back({to, from, distance});
+        G[from].push_back({to, distance});
+        G[to].push_back({from, distance});
     }
-    ans.resize(N, -1);
+
+    ans.assign(N, 0);
     dfs(0,-1,0);
 
     for(auto e:ans) cout << e << endl;
