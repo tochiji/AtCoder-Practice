@@ -32,8 +32,8 @@ BraceWrapping:
     AfterUnion: false
 # Clang 6 で追加
 #   AfterExternBlock: true
-    BeforeCatch: true
-    BeforeElse: true
+    BeforeCatch: false
+    BeforeElse: false
 BreakBeforeBinaryOperators: NonAssignment
 BreakBeforeInheritanceComma: true
 BreakBeforeTernaryOperators: true
