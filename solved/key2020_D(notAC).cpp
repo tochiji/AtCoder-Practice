@@ -49,6 +49,7 @@ int main() {
             } else {
                 visOK = false;
             }
+            
         }
 
         if (visOK) {
