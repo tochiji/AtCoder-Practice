@@ -5,7 +5,13 @@ using ll = long long;
 using namespace std;
 
 int main() {
-	int N;
-	cin >> N;
-  
+	ll H,N;
+	cin >> H >> N;
+  vector<ll> A(N);
+	rep(i,N) cin >> A[i];
+	if(accumulate(all(A),0) >= H){
+		cout << "Yes" << endl;
+	} else {
+		cout << "No" << endl;
+	}
 }

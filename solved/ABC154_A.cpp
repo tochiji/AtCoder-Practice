@@ -5,7 +5,10 @@ using ll = long long;
 using namespace std;
 
 int main() {
-	int N;
-	cin >> N;
-  
+	string S,T,U;
+	int A,B;
+	cin >> S >> T >> A >> B >> U;
+  if(S==U) A--;
+	if(T == U) B--;
+	cout << A << " " << B << endl;
 }
