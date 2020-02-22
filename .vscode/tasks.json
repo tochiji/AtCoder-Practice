@@ -6,12 +6,30 @@
       "command": "/usr/local/bin/g++",
       "args": [
         "-g",
-        "${file}",
-        "-o",
-        "${fileDirname}/${fileBasenameNoExtension}"
+        "${file}"
+        // "${fileDirname}/${fileBasenameNoExtension}"
       ],
       "options": {
         "cwd": "/usr/local/bin"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "build before debug",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-g",
+        "${fileDirname}/${fileBasenameNoExtension}.cpp",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
       }
     }
   ],
