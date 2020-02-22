@@ -7,15 +7,21 @@ using namespace std;
 struct UnionFind {
     // par[i]:iの親の番号　(例) par[3] = 99 : 3の親が99
     vector<int> par;
+    vector<int> cnt;
 
-    UnionFind(int N) : par(N) {  // 初期化
-        for (int i = 0; i < N; i++)
+    UnionFind(int N) : par(N), cnt(N) {  // 初期化
+        for (int i = 0; i < N; i++) {
             par[i] = i;
+            cnt[i] = 1;
+        }
     }
 
     void print() {
         for (int i = 0; i < par.size(); i++)
             printf("par[%d] = %d\n", i, par[i]);
+
+        for (int i = 0; i < par.size(); i++)
+            printf("cnt[%d] = %d\n", i, cnt[i]);
     }
 
     int root(int x) {
@@ -27,7 +33,13 @@ struct UnionFind {
         int rx = root(x);
         int ry = root(y);
         if (rx == ry) return;
-        par[rx] = ry;
+        if (cnt[rx] < cnt[ry]) {
+            par[rx] = ry;
+            cnt[ry] += cnt[rx];
+        } else {
+            par[ry] = rx;
+            cnt[rx] += cnt[ry];
+        }
     }
 
     bool same(int x, int y) {
@@ -44,37 +56,34 @@ struct UnionFind {
         }
         return s.size();
     }
-};
 
-struct P {
-    int A;
-    int B;
-    int index;
-    int ans;
-
-    bool operator<(const P &another) const {
-            return index < another.index;
-    };
-    bool operator>(const P &another) const {
-        return index > another.index;
-    };
+    int count(int x) {
+        return cnt[root(x)];
+    }
 };
 
 int main() {
-    int N,M;
+    int N, M;
     cin >> N >> M;
     UnionFind uf(N);
-    vector<P> b(M);  // bridgeのb
-    rep(i,M){
-      int A,B;
-      cin >> A >> B;
-      A--;B--;
-      b[i].A = A;
-      b[i].B = B;
-      b[i].index = i;
+    vector<int> A(M), B(M);
+    rep(i, M) {
+        int a, b;
+        cin >> a >> b;
+        a--;
+        b--;
+        A[i] = a;
+        B[i] = b;
     }
-    sort(all(b),greater<P>());
+    ll ans = N*(N-1)/2;
+    vector<ll> anss;
+    anss.push_back(ans);
     rep(i,M){
-      
+        ans -= uf.count(A[M-i-1]) * uf.count(B[i]);
+        anss.push_back(ans);
+        uf.unite(A[i],B[i]);
+    }
+    rep(i,M){
+        cout << anss[M-i-1] << endl;
     }
 }
