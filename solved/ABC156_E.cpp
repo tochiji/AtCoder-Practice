@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define rep(i,n) for(int i=0;i<(n);i++)
+#define rep(i, n) for (int i = 0; i < (n); i++)
 #define all(x) (x).begin(), (x).end()
 using ll = long long;
 using namespace std;
@@ -58,20 +58,34 @@ struct mint {
     }
 };
 
-mint f(int k){
-
+ostream &operator<<(ostream &os, const mint &a) {
+    return os << a.x;
 }
 
-int main() {
-	int n,k;
-	cin >> n >> k;
-  mint ans = 0;
-	rep(i,min(n,k+1)){
-		ll tmp = k - abs(1-i);
-		if(tmp<0) continue;
-		else if(tmp==0) ans += n;
-		else {
+struct combination {
+    vector<mint> fact, ifact;
+    combination(int n) : fact(n + 1), ifact(n + 1) {
+        assert(n < MOD);
+        fact[0] = 1;
+        for (int i = 1; i <= n; ++i)
+            fact[i] = fact[i - 1] * i;
+        ifact[n] = fact[n].inv();
+        for (int i = n; i >= 1; --i)
+            ifact[i - 1] = ifact[i] * i;
+    }
+    mint operator()(int n, int k) {
+        if (k < 0 || k > n) return 0;
+        return fact[n] * ifact[k] * ifact[n - k];
+    }
+};
 
-		}
-	}
+int main() {
+    int n, k;
+    cin >> n >> k;
+    combination nCk(n);
+    mint ans = 0;
+    rep(i, min(k + 1, n)) {
+        ans += nCk(n, i) * nCk(n - 1, i);
+    }
+    cout << ans << endl;
 }
