@@ -5,8 +5,9 @@ using ll = long long;
 using namespace std;
 
 int main() {
-    int N;
-    cin >> N;
-    
-    
+	double L;
+	cin >> L;
+	double a = L/3;
+	cout << fixed << setprecision(9);
+	cout << a*a*a << endl;
 }

@@ -5,8 +5,9 @@ using ll = long long;
 using namespace std;
 
 int main() {
-    int N;
-    cin >> N;
-    
-    
+	int N,M;
+	cin >> N >> M;
+	int ans;
+	
+	cout << N*(N-1)/2 + M*(M-1)/2 << endl;
 }
