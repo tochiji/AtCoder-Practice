@@ -11,6 +11,6 @@
     COMMAND=$(basename "$0")
     
     DATA=${2:-"data"}
-    g++ -std=c++14 "$1" \
+    g++ -std=c++17 "$1" \
         && time ./a.out <$DATA
 
