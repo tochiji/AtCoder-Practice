@@ -3,93 +3,92 @@
 using namespace std;
 typedef long long ll;
 
-int main(){
-  // &は論理積を取る。どちらもTrue（1）なら1を返す。
-  // 1&1は1、1&0は0、0&0は0。論理学でよくあるやつ。
+int main() {
+    // &は論理積を取る。どちらもTrue（1）なら1を返す。
+    // 1&1は1、1&0は0、0&0は0。論理学でよくあるやつ。
 
-  int i = 3;
-  cout << (i&0) << endl; // 0
-  cout << (i&1) << endl; // 1 奇数だと1
+    int i = 3;
+    cout << (i & 0) << endl;    // 0
+    cout << (i & 1) << endl;    // 1 奇数だと1
 
-  i = 4;
-  cout << (i&0) << endl; // 0
-  cout << (i&1) << endl; // 0　偶数だと0
+    i = 4;
+    cout << (i & 0) << endl;    // 0
+    cout << (i & 1) << endl;    // 0　偶数だと0
 
-  // int型でも、setprecisionすれば小数点以下が出力される
-  i = 113;
-  cout << fixed << setprecision(7) << sqrt(i) << endl; // 10.6301458
+    // int型でも、setprecisionすれば小数点以下が出力される
+    i = 113;
+    cout << fixed << setprecision(7) << sqrt(i) << endl;    // 10.6301458
 
-  // eを入れる文字
-  i = 1e9;
-  cout << i << endl; // 1000000000 （0が9個）
+    // eを入れる文字
+    i = 1e9;
+    cout << i << endl;    // 1000000000 （0が9個）
 
-  // XORの確認。どちらか片方だけ1なら1。どこが異なっているかを確認
-  int a = 1000000000;
-  int b = 0;
-  int c = a^b;
-  cout << bitset<32>(a) << endl; // 00111011100110101100101000000000
-  cout << bitset<32>(b) << endl; // 00000000000000000000000000000000
-  cout << bitset<32>(c) << endl; // 00111011100110101100101000000000
-  cout << c << endl; // 1000000000
+    // XORの確認。どちらか片方だけ1なら1。どこが異なっているかを確認
+    int a = 1000000000;
+    int b = 0;
+    int c = a ^ b;
+    cout << bitset<32>(a) << endl;    // 00111011100110101100101000000000
+    cout << bitset<32>(b) << endl;    // 00000000000000000000000000000000
+    cout << bitset<32>(c) << endl;    // 00111011100110101100101000000000
+    cout << c << endl;                // 1000000000
 
-  // lower_boundの性質
-  deque<int> d;
-  d.push_back(1);
-  d.push_back(2);
-  d.push_back(3);
-  cout << lower_bound(d.begin(),d.end(),0) - d.begin() << endl; // 0
-  cout << lower_bound(d.begin(),d.end(),1) - d.begin() << endl; // 0
-  cout << lower_bound(d.begin(),d.end(),2) - d.begin() << endl; // 1
-  cout << lower_bound(d.begin(),d.end(),10) - d.begin() << endl; // 3
+    // lower_boundの性質
+    deque<int> d;
+    d.push_back(1);
+    d.push_back(2);
+    d.push_back(3);
+    cout << lower_bound(d.begin(), d.end(), 0) - d.begin() << endl;     // 0
+    cout << lower_bound(d.begin(), d.end(), 1) - d.begin() << endl;     // 0
+    cout << lower_bound(d.begin(), d.end(), 2) - d.begin() << endl;     // 1
+    cout << lower_bound(d.begin(), d.end(), 10) - d.begin() << endl;    // 3
 
-  // lower_boundの性質
-  cout << endl;
-  cout << "lower_bound" << endl;
-  vector<int> p(3);
-  p[0] = 20;
-  p[1] = 40;
-  p[2] = 100;
+    // lower_boundの性質
+    cout << endl;
+    cout << "lower_bound" << endl;
+    vector<int> p(3);
+    p[0] = 20;
+    p[1] = 40;
+    p[2] = 100;
 
-  cout << lower_bound(p.begin(),p.end(),10) - p.begin() << endl;
-  // 0 初項より小さければ0
-  cout << lower_bound(p.begin(),p.end(),30) - p.begin() << endl;
-  // 1 その値以上のはじめのindex
-  cout << lower_bound(p.begin(),p.end(),40) - p.begin() << endl;
-  // 1 ある項と同じならそのindex
-  cout << lower_bound(p.begin(), p.end(), 999) - p.begin() << endl;
-  // 3 どの項より大きければ最後のindex+1
-  cout << endl;
+    cout << lower_bound(p.begin(), p.end(), 10) - p.begin() << endl;
+    // 0 初項より小さければ0
+    cout << lower_bound(p.begin(), p.end(), 30) - p.begin() << endl;
+    // 1 その値以上のはじめのindex
+    cout << lower_bound(p.begin(), p.end(), 40) - p.begin() << endl;
+    // 1 ある項と同じならそのindex
+    cout << lower_bound(p.begin(), p.end(), 999) - p.begin() << endl;
+    // 3 どの項より大きければ最後のindex+1
+    cout << endl;
 
+    // 文字列検索
+    string s    = "aaakyotobbb";
+    int kyoto_i = s.substr(1).find("kyoto");
+    cout << kyoto_i << endl;
 
-  // 文字列検索
-  string s = "aaakyotobbb";
-  int kyoto_i = s.substr(1).find("kyoto");
-  cout << kyoto_i << endl;
+    // 10^9 + 7を見る
+    cout << (long long)(1e9 + 7) << endl;
+    cout << 1000000007 << endl;
 
-  // 10^9 + 7を見る
-  cout << (long long)(1e9 + 7) << endl;
-  cout << 1000000007 << endl;
+    // カッコに代入してさらにあまりを取れるかどうか
+    int R = 2;
+    (R += 3) %= 10;
+    cout << R << endl;    // 5
 
-  // カッコに代入してさらにあまりを取れるかどうか
-  int R = 2;
-  (R += 3) %= 10;
-  cout << R << endl; // 5
+    // 掛け算とわり算の順序の違い
+    // 割り算は桁落ちが発生するから注意。かけてから最後に割ること
+    cout << 10 * 10 / 3 << endl;    // 33
+    cout << 10 / 3 * 10 << endl;    // 30
 
-  // 掛け算とわり算の順序の違い
-  // 割り算は桁落ちが発生するから注意。かけてから最後に割ること
-  cout << 10 * 10 / 3 << endl; // 33
-  cout << 10 / 3 * 10 << endl; // 30
+    // 大きい掛け算。下記のような形は大丈夫
+    cout << (long long)1000000000 * 1000000000 / 1000000000 + 1 << endl;
+    cout << ((long long)1000000000 * 1000000000 / 1000000000) + 2 << endl;
+    cout << (1000000000 * (long long)1000000000 / 1000000000) + 3 << endl;
+    cout << (1000000000LL * 1000000000 / 1000000000) + 4 << endl;
+    cout << (1000000000 * 1000000000LL / 1000000000) + 5 << endl;
 
-  // 大きい掛け算。下記のような形は大丈夫
-  cout << (long long)1000000000 * 1000000000 / 1000000000 + 1 << endl;
-  cout << ((long long)1000000000 * 1000000000 / 1000000000) + 2 << endl;
-  cout << (1000000000 * (long long)1000000000 / 1000000000) + 3 << endl;
-  cout << (1000000000LL * 1000000000 / 1000000000) + 4 << endl;
-  cout << (1000000000 * 1000000000LL / 1000000000) + 5 << endl;
-
-  // こっから下はだめ。intオーバーフローする。
-  // カッコ
-  cout << (long long)(1000000000 * 1000000000 / 1000000000) + 10 << endl;
-  cout << (1000000000 * 1000000000 / 1000000000) + (long long)11 << endl;
-  cout << (1000000000 * 1000000000 / (long long)1000000000) + 12 << endl;
+    // こっから下はだめ。intオーバーフローする。
+    // カッコ
+    cout << (long long)(1000000000 * 1000000000 / 1000000000) + 10 << endl;
+    cout << (1000000000 * 1000000000 / 1000000000) + (long long)11 << endl;
+    cout << (1000000000 * 1000000000 / (long long)1000000000) + 12 << endl;
 }

@@ -4,6 +4,10 @@
 using ll = long long;
 using namespace std;
 
+#define debug(x) cout << #x << "=" << x << endl;
+#define vdebug(v) { cout << #v << "=" << endl; rep(i_debug, v.size()) { cout << v[i_debug] << ",";}cout << endl; }
+#define mdebug(m) { cout << #m << "=" << endl; rep(i_debug, m.size()) { rep(j_debug, m[i_debug].size()) { cout << m[i_debug][j_debug] << ","; } cout << endl; } }
+
 int dfs(int v,vector<vector<int>> &to, vector<bool> &visited, vector<int> &c){
     if(c[v] != -1) return c[v];
     if(visited[v]) return -1;
@@ -43,6 +47,7 @@ int main() {
     rep(i,N)rep(j,N-2){
         to[ids[i][j+1]].push_back(ids[i][j]);
     }
+    mdebug(to);
     vector<int> calculated(maxid,-1);
     vector<bool> visited(maxid,false);
     int ans = 0;
