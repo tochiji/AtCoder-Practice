@@ -7,8 +7,7 @@ template <typename T>
 using vec = std::vector<T>;
 
 int main() {
-    int N;
-    cin >> N;
-    
-    
+    double R;
+    cin >> R;
+    cout << 2*R*3.141592 << endl;
 }
