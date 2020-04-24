@@ -10,5 +10,5 @@ int main() {
     int N;
     cin >> N;
     
-    
+    cout << (N>=1000?"ABD":"ABC") << endl;
 }
