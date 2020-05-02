@@ -7,8 +7,8 @@ template <typename T>
 using vec = std::vector<T>;
 
 int main() {
-    int N;
-    cin >> N;
-    
+    int A,B,C,D;
+    cin >> A >> B >> C >> D;
+    cout << min(A,B) + min(C,D) << endl;
     
 }
