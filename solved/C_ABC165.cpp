@@ -7,8 +7,6 @@ using namespace std;
 template <typename T>
 using vec = std::vector<T>;
 
-
-
 int main() {
     int N, M, Q;
     cin >> N >> M >> Q;
@@ -21,7 +19,6 @@ int main() {
     ll ans = 0;
     for (int a = 1; a <= M; ++a) {
         r(b, a) r(c, b) r(d, c) r(e, d) r(f, e) r(g, f) r(h, g) r(i, h)  r(j, i){
-            // vec<int> Z ={a,b,c,d,e,f,g,h,i};
             vec<int> Z ={j,i,h,g,f,e,d,c,b,a};
             ll tmpans = 0;
             rep(k,Q){
