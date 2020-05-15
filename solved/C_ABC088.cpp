@@ -6,40 +6,27 @@ using namespace std;
 template <typename T>
 using vec = std::vector<T>;
 
-int c[4][4];
-bool ans = false;
-void dfs(vec<int>a,vec<int>b){
-
-    bool flag = true;
-    rep(i,3)rep(j,3){
-        cout << a[i] <<" " << b[j] << endl;
-        if(a[i]+b[j]!=c[i][j])flag = false;
-        if(a[i]+b[j]>c[i][j]) return;
-        if(a[i]>c[i][j]) return;
-        if(b[j]>c[i][j]) return;
-    }
-    if(flag) {
-        ans = true;
-        cout << "Yes" << endl;
-        exit(0);
-    }
-    rep(i,3){
-        ++a[i];
-        dfs(a,b);
-        --a[i];
-    }
-    rep(i,3){
-        ++b[i];
-        dfs(a,b);
-        --b[i];
-    }
-}
-
 int main() {
+    int c[3][3];
     rep(i,3)rep(j,3){
         cin >> c[i][j];
     }
-    
-    dfs(vec<int>(3,0),vec<int>(3,0));
-    cout << "No" << endl;
+    int a0,a1,a2;
+    a0 = min({c[0][0],c[0][1],c[0][2]});
+    a1 = min({c[1][0],c[1][1],c[1][2]});
+    a2 = min({c[2][0],c[2][1],c[2][2]});
+
+    int b0,b1,b2;
+    bool flag = true;
+    rep(i,3){
+        bool cond1 = (c[0][i] - a0) == (c[1][i] - a1);
+        bool cond2 = (c[0][i] - a0) == (c[2][i] - a2);
+        bool cond3 = (c[1][i] - a1) == (c[2][i] - a2);
+        if(!cond1 || !cond2 || !cond3) flag = false;
+    }
+    if(flag){
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }
 }
