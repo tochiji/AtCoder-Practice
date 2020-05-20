@@ -28,7 +28,7 @@ int dfs(int now,vec<vec<int>> &G, vec<int> &tpl, vec<bool> &visited){
 
 // vec<int> tpl = topological_sort(G)
 // という形で実行。
-// 下記のような二重グラフを受け付ける。
+// 下記のようなグラフを受け付ける。
 //
 // G = {
 //    {},    → 0は始点
