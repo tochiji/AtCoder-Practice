@@ -6,7 +6,7 @@ using namespace std;
 template <typename T>
 using vec = std::vector<T>;
 
-int N;
+int N = 10;
 
 void dfs(string now) {
     if (now.size() == N) {
@@ -19,6 +19,5 @@ void dfs(string now) {
 }
 
 int main() {
-    cin >> N;
     dfs("");
 }
