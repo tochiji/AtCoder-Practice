@@ -15,5 +15,3 @@
     cat template.cpp >B_$1.cpp
     cat template.cpp >C_$1.cpp
     cat template.cpp >D_$1.cpp
-    cat template.cpp >E_$1.cpp
-    cat template.cpp >F_$1.cpp
