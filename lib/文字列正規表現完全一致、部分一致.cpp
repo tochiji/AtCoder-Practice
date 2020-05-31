@@ -13,17 +13,23 @@ int main() {
     bool m = regex_match(S, regex("(hi)+"));
     cout << (m?"Yes":"No") << endl; // Yes
     
+
+
     S = "hihih";    
     m = regex_match(S, regex("(hi)+"));
     cout << (m?"Yes":"No") << endl; // No
 
 
+
+
     // 「正規表現部分一致」は、regex_serach！
-    S = "hihihihihi";    
-    m = regex_search(S, regex("(hi)+"));
-    cout << (m?"Yes":"No") << endl; // Yes
+    string s = "hihihihihi";    
+    bool c = regex_search(s, regex("(hi)+"));
+    cout << (c?"Yes":"No") << endl; // Yes
     
-    S = "hihih";
-    m = regex_search(S, regex("(hi)+"));
-    cout << (m?"Yes":"No") << endl; // Yes ←これがYesになる！
+
+    
+    s = "hihih";
+    c = regex_search(s, regex("(hi)+"));
+    cout << (c?"Yes":"No") << endl; // Yes ←これがYesになる！
 }

@@ -22,6 +22,7 @@
       "type": "shell",
       "command": "g++",
       "args": [
+        "-std=c++17",
         "-g",
         "${fileDirname}/${fileBasenameNoExtension}.cpp",
         "-o",

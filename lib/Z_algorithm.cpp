@@ -3,8 +3,7 @@
 #define all(x) (x).begin(), (x).end()
 using ll = long long;
 using namespace std;
-template <typename T>
-using vec = std::vector<T>;
+template <typename T> using vec = std::vector<T>;
 
 // Z-algorithm
 // 最長共通部分文字列(LCP)を求める
@@ -16,16 +15,14 @@ vec<int> Zalgo(string S) {
     A[0]  = N;
     int i = 1, j = 0;
     while (i < S.size()) {
-        printf("%d %d\n",i,j);
-        while (i + j < N && S[j+i]==S[j])
+        while (i + j < N && S[j + i] == S[j])
             ++j;
         A[i] = j;
-        printf("  %d\n",j);
-        if (j == 0) {
-            ++i;
-        } else {
+
+        if (j == 0) ++i;
+        else {
             int k = 1;
-            while (i + k < N && k + A[k] < j){
+            while (i + k < N && k + A[k] < j) {
                 A[i + k] = A[k], ++k;
             }
             i += k, j -= k;
@@ -40,5 +37,6 @@ int main() {
     auto a = Zalgo(S);
     for (auto e : a)
         cout << e << " ";
+
     cout << endl;
 }

@@ -9,7 +9,7 @@
         "type": "lldb",
         "request": "launch",
         "program": "${fileDirname}/${fileBasenameNoExtension}",
-        "args": [],
+        "args": ["-std=c++17"],
         "cwd": "${fileDirname}",
         "preLaunchTask": "build before debug"
       }
