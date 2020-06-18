@@ -6,6 +6,6 @@ using namespace std;
 template <typename T> using vec = std::vector<T>;
 
 int main() {
-    int N;
-    cin >> N;
+    //#INPUT
+    
 }

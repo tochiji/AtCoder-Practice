@@ -1,34 +1,53 @@
 #include <bits/stdc++.h>
-#define rep(i, n) for (ll i = 0; i < (n); i++)
+#define rep(i,n) for(ll i=0;i<(n);i++)
 #define all(x) (x).begin(), (x).end()
 using ll = long long;
 using namespace std;
-template <typename T> using vec = std::vector<T>;
+template <typename T>
+using vec = std::vector<T>;
 
-int main() {
-    string S;
-    cin >> S;
-    int N = S.size();
+int N;
+vec<string> ans;
+vec<string> P,Q;
 
-    ll ans    = 0;
-    ll nowsum = S[0] - '0';
-
-    rep(i, 1 << (N - 1)) {
-        rep(j, N - 1) {
-            if (i & (1 << j)) {
-                // +が来た場合、ここまでの計算を一度確定させて、
-                // 次の桁から始める
-                ans += nowsum;
-                nowsum = S[j+1] - '0';
-            } else {
-                // +が来ない場合、繰り上げ
-                nowsum *= 10;
-                nowsum += (S[j+1] - '0');
-            }
-        }
-        ans+=nowsum;
-        nowsum = S[0] - '0';
+void dfs(string s) {
+    if (s.size() == N) {
+        ans.push_back(s);
+        return;
     }
 
-    cout << ans << endl;
+    for(int i=1;i<=N;++i) {
+        bool flag = true;
+        for (auto e : s)
+            if (e == (i + '0')) flag = false;
+        if (!flag) continue;
+        s += to_string(i);
+        dfs(s);
+        s.pop_back();
+    }
+};
+
+
+int main() {
+    cin >> N;
+    P.resize(N);
+    Q.resize(N);
+    rep(i,N) cin >> P[i];
+    rep(i,N) cin >> Q[i];
+
+    string Ps = "";
+    string Qs = "";
+    for(auto e:P) Ps+=e;
+    for(auto e:Q) Qs+=e;
+
+    dfs("");
+    sort(all(ans));
+
+    int ansP,ansQ;
+    rep(i,ans.size()){
+        if(ans[i]==Ps) ansP=i+1;
+        if(ans[i]==Qs) ansQ=i+1;
+    }
+    cout << abs(ansP-ansQ) << endl;
+
 }
