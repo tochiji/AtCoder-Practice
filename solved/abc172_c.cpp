@@ -8,22 +8,27 @@ template <typename T> using vec = std::vector<T>;
 int main() {
     ll N, M, K;
     cin >> N >> M >> K;
+    
+    vec<ll> A(N);
+    rep(i, N) cin >> A[i];
+    
+    vec<ll> B(M);
+    rep(i, M) cin >> B[i];
 
-    vec<ll> A(N + 1,0);
-    rep(i, N) cin >> A[i+1];
-    rep(i, N+1) A[i + 1] += A[i];
-
-    vec<ll> B(M + 1,0);
-    rep(i, M) cin >> B[i+1];
-    rep(i, M+1) B[i + 1] += B[i];
+    rep(i,N-1) A[i+1]+=A[i];
+    rep(i,M-1) B[i+1]+=B[i];
+    A.insert(A.begin(),0);
+    A.push_back(1e18);
+    B.insert(B.begin(),0);
+    B.push_back(1e18);
 
     ll ans = 0;
-    int b_i = M;
-    rep(i, N+1) {
-        if (A[i] > K) break;
-        int idx = upper_bound(all(B),K-A[i]) - B.begin();
-        ans = max(ans,i+idx-1);
+    rep(i,A.size()){
+        if(A[i] > K) break;
+        ll Z = K - A[i];
+        int index = upper_bound(all(B),Z) - B.begin();
+        --index;
+        ans = max(ans,i+index);
     }
-
     cout << ans << endl;
 }

@@ -1,35 +1,32 @@
 #include <bits/stdc++.h>
-#define rep(i, n) for (int i = 0; i < (n); i++)
+#define rep(i, n) for (ll i = 0; i < (n); i++)
 #define all(x) (x).begin(), (x).end()
+using ll = long long;
 using namespace std;
-
-struct wh {
-    int w;
-    int h;
-    bool operator<(const wh &another) const {
-        if (w == another.w)
-            return h > another.h;
-        else
-            return w < another.w;
-    };
-};
+template <typename T> using vec = std::vector<T>;
 
 int main() {
-    int N;
+    ll N;
     cin >> N;
-    vector<wh> box(N);
-    rep(i, N) cin >> box[i].w >> box[i].h;
-    sort(all(box));
+    vec<ll> a(N);
+    rep(i,N) cin >> a[i];
+    a.push_back(0);
 
-    vector<int> LIS;
-    LIS.push_back(box[0].h);
-    rep(i,N){
-      int index = lower_bound(all(LIS),box[i].h) - LIS.begin();
-      if(LIS[index] < box[i].h){
-        LIS.push_back(box[i].h);
-      }else if(LIS[index] > box[i].h){
-        LIS[index] = box[i].h;
-      }
+    ll l = 0;
+    ll r = 0;
+    ll ans = 0;
+    while(l<N){
+        if(l == r){
+            ++r;
+        } else if(a[r-1] >= a[r]){
+            ans+=((r-l+1)*(r-l)/2);
+            l=r;
+        } else if(a[r-1]<a[r] && r != N-1){
+            ++r;
+        } else if(a[r-1]<a[r] && r == N-1){
+            ans+=((r-l+2)*(r-l+1)/2);
+            break;
+        }
     }
-    cout << LIS.size() << endl;
+    cout << ans << endl;
 }
