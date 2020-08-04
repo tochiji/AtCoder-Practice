@@ -9,13 +9,13 @@ int main() {
     int N, K;
     cin >> N >> K;
     
-    vec<int> h(N);
+    vec<int> h(N+10);
     rep(i, N) cin >> h[i];
-
-    vec<int> dp(N+K+10,1e9+7);
+    vec<int> dp(N+10,1e9+7);
     dp[1] = 0;
-    for(int i=1;i<=N-1;++i)for(int k=1;k<=K&&i+k<=N;++k){
-        dp[i+k] = min(dp[i+k],dp[i]+abs(h[i-1]-h[i+k-1]));
+
+    for(int i=1;i<=N-1;++i)for(int j=1;j<=K&&i+j<=N;++j){
+        dp[i+j] = min(dp[i+j],dp[i]+abs(h[i-1]-h[i+j-1]));
     }
     cout << dp[N] << endl;
 }

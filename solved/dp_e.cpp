@@ -9,22 +9,24 @@ int main() {
     int N, W;
     cin >> N >> W;
 
-    vec<int> w(N), v(N);
+    vec<ll> w(N), v(N);
     rep(i, N) cin >> w[i] >> v[i];
 
-    int MAX_VALUE = N * 1000 + 1;
-    vec<vec<int>> dp(N + 1, vec<int>(MAX_VALUE+1000,1e9+10));
+    ll MAX_VAL = 10000 * N;
+    vec<vec<ll>> dp(N + 1, vec<ll>(MAX_VAL + 100, 1e14 + 5));
+
     for (int i = 1; i <= N; ++i) {
-        for(int j=MAX_VALUE;j>0;--j) {
-            dp[i][j] = min({dp[i][j],dp[i][j+1], dp[i-1][j]});
-            if(j<=v[i-1]) dp[i][j] = min(dp[i][j],w[i-1]);
-            if(j>=v[i-1]) dp[i][j] = min(dp[i][j],dp[i-1][j-v[i-1]]+w[i-1]);
+        dp[i][v[i - 1]] = min(dp[i][v[i - 1]], w[i - 1]);
+
+        for (int j = 0; j <= MAX_VAL; ++j) {
+            dp[i][j] = min({dp[i][j], dp[i - 1][j]});
+
+            dp[i][j + v[i - 1]] = min(dp[i][j + v[i - 1]], dp[i-1][j] + w[i - 1]);
         }
     }
 
     ll ans = 0;
-    rep(i,MAX_VALUE){
-        if(dp[N][i] <= W) ans=max(ans,i);
-    }
+
+    rep(i, MAX_VAL) if (dp[N][i] <= W) ans = max(ans, i);
     cout << ans << endl;
 }
