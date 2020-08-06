@@ -1,10 +1,14 @@
 version: '3.3'
 
 services:
-  cpp:
-    build: .
+  atcoder:
+    build:
+      context: .
+      args:
+        - GIT_USER
+        - GITHUB_TOKEN
     volumes:
-      - ..:/cpp
+      - ..:/AtCoder
     working_dir: /
     tty: true
     # to use gdb
@@ -12,3 +16,4 @@ services:
       - SYS_PTRACE
     security_opt:
       - seccomp:unconfined
+      

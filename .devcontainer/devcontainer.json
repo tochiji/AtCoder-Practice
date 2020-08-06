@@ -1,9 +1,7 @@
 {
     "name": "cpp-devcontainer-project",
-    "dockerComposeFile": [
-        "./docker-compose.yml"
-    ],
-    "service": "cpp",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "atcoder",
     "extensions": [
         "ms-vscode.cpptools",
         "vector-of-bool.cmake-tools",
@@ -13,5 +11,5 @@
     // "settings": {
     //     "http.proxyStrictSSL": false
     // },
-    "workspaceFolder": "/cpp"
+    "workspaceFolder": "/AtCoder"
 } 
