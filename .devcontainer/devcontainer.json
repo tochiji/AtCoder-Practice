@@ -5,7 +5,8 @@
     "extensions": [
         "ms-vscode.cpptools",
         "vector-of-bool.cmake-tools",
-        "twxs.cmake"
+        "twxs.cmake",
+        "tabnine.tabnine-vscode"
     ],
     // 社内プロキシなどで、拡張機能がインストールできない場合にコメントを外す
     // "settings": {

@@ -7,5 +7,4 @@ template <typename T> using vec = std::vector<T>;
 
 int main() {
     //#INPUT
-
 }
