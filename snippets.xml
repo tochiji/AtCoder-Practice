@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<folders>
+	<folder>
+		<title>C++</title>
+		<snippets>
+			<snippet>
+				<title>標準 stdin</title>
+				<content>#include &lt;bits/stdc++.h&gt;
+#define rep(i, n) for (ll i = 0; i &lt; (n); i++)
+#define all(x) (x).begin(), (x).end()
+using ll = long long;
+using namespace std;
+template &lt;typename T&gt; using vec = std::vector&lt;T&gt;;
+
+int main() {
+    
+}</content>
+			</snippet>
+			<snippet>
+				<title>無向距離無グラフ stdin</title>
+				<content>    vector&lt;vector&lt;int&gt;&gt; G;
+    G.resize(N);
+
+    rep(i, N - 1) {
+        int from, to;
+        cin &gt;&gt; from &gt;&gt; to;
+        from--;
+        to--;
+
+        G[from].push_back(to);
+        G[to].push_back(from);
+    }</content>
+			</snippet>
+			<snippet>
+				<title>無向距離有グラフ stdin</title>
+				<content>struct distination {
+    int to;
+    int distance;
+};
+
+int N, M;
+vector&lt;vector&lt;distination&gt;&gt; G;
+
+int main() {
+    cin &gt;&gt; N &gt;&gt; M;
+    G.resize(N);
+    rep(i, M) {
+        int from, to, distance;
+        cin &gt;&gt; from &gt;&gt; to &gt;&gt; distance;
+        from--;
+        to--;
+        G[from].push_back({to, distance});
+        G[to].push_back({from, distance});
+    }
+}</content>
+			</snippet>
+			<snippet>
+				<title>グラフ関係 stdin</title>
+				<content>int N, M;
+vector&lt;vector&lt;bool&gt;&gt; G;
+
+int main() {
+    cin &gt;&gt; N &gt;&gt; M;
+    G.resize(N);
+    rep(i, N) G[i].resize(N);
+
+    rep(i, M) {
+        int from, to;
+        from--;
+        to--;
+        cin &gt;&gt; from &gt;&gt; to;
+        G[from][to] = true;
+        G[to][from] = true;
+    }
+
+    rep(i, N) G[i][i] = true;
+}</content>
+			</snippet>
+			<snippet>
+				<title>グラフ全stdout</title>
+				<content>  rep(i,N){
+    cout &lt;&lt; &quot;G[&quot; &lt;&lt; i &lt;&lt; &quot;] &quot;;
+    for(auto e:G[i]){
+      cout &lt;&lt; e &lt;&lt; &quot; &quot;;
+    }
+    cout &lt;&lt; endl;
+  }</content>
+			</snippet>
+			<snippet>
+				<title>文字列に文字が含まれるか</title>
+				<content>bool has3 = S.find(&quot;3&quot;) != string::npos;</content>
+			</snippet>
+			<snippet>
+				<title>文字列検索 index</title>
+				<content>int index = S.find(&quot;XXXXX&quot;);
+// 文字列の先頭の位置を返す
+// &quot;abcdef&quot;.find(&quot;abcd&quot;) → 「0」
+// &quot;abcdef&quot;.find(&quot;def&quot;) → 「3」
+// &quot;abcdef&quot;.find(&quot;defg&quot;) → 「string::npos」
+if(index != string::npos){
+
+}</content>
+			</snippet>
+			<snippet>
+				<title>行列から文字検索</title>
+				<content>        flag = true;
+        rep(k, N) rep(z, N) {
+            if (B[z][k] == &apos;o&apos;) flag = false;
+        }</content>
+			</snippet>
+			<snippet>
+				<title>塗りつぶしdfs</title>
+				<content>void dfs(int x, int y) {
+    B[x][y] = &apos;x&apos;;
+    if (x != 0 &amp;&amp; B[x - 1][y] == &apos;o&apos;) dfs(x - 1, y);
+    if (y != 0 &amp;&amp; B[x][y - 1] == &apos;o&apos;) dfs(x, y - 1);
+    if (x != 9 &amp;&amp; B[x + 1][y] == &apos;o&apos;) dfs(x + 1, y);
+    if (y != 9 &amp;&amp; B[x][y + 1] == &apos;o&apos;) dfs(x, y + 1);
+}</content>
+			</snippet>
+			<snippet>
+				<title>queue bfs（幅優先探索）</title>
+				<content>int H, W;
+vector&lt;string&gt; S;
+struct position {
+    int x;
+    int y;
+    int count;
+};
+queue&lt;position&gt; q;
+
+int main() {
+    cin &gt;&gt; H &gt;&gt; W;
+    S.resize(H);
+
+    rep(i, H) {
+        cin &gt;&gt; S[i];
+        int index = A[i].find(&quot;.&quot;);
+        if (index != string::npos) {
+            q.push({i, index, 0});
+        }
+    }
+
+    while (!q.empty()) {
+        position now = q.front();
+        int x        = now.x;
+        int y        = now.y;
+        int count    = now.count;
+        int P        = S[x][y];
+        q.pop();
+
+        S[x][y] = &apos;#&apos;;
+        if (x != 0 &amp;&amp; S[x - 1][y] != &apos;#&apos;) {
+            q.push({x - 1, y, count + 1});
+            S[x - 1][y] = &apos;#&apos;;
+        }
+        if (y != 0 &amp;&amp; S[x][y - 1] != &apos;#&apos;) {
+            q.push({x, y - 1, count + 1});
+            S[x][y - 1] = &apos;#&apos;;
+        }
+        if (x != H - 1 &amp;&amp; S[x + 1][y] != &apos;#&apos;) {
+            q.push({x + 1, y, count + 1});
+            S[x + 1][y] = &apos;#&apos;;
+        }
+        if (y != W - 1 &amp;&amp; S[x][y + 1] != &apos;#&apos;) {
+            q.push({x, y + 1, count + 1});
+            S[x][y + 1] = &apos;#&apos;;
+        }
+    };
+}</content>
+			</snippet>
+			<snippet>
+				<title>deque 01-bfs</title>
+				<content>int main() {
+    int H, W;
+    cin &gt;&gt; H &gt;&gt; W;
+    vector&lt;string&gt; A(H);
+    int B[H][W];
+
+    rep(i, H) rep(j, W) {
+        B[i][j] = 99999;
+    }
+
+    struct position {
+        int x;
+        int y;
+    };
+
+    deque&lt;position&gt; q;
+
+    rep(i, H) {
+        cin &gt;&gt; A[i];
+        int index = A[i].find(&quot;s&quot;);
+        if (index != string::npos) {
+            A[i][index] = &apos;.&apos;;
+            B[i][index] = 0;
+            q.push_front({i, index});
+        }
+    }
+
+    const int dx[] = {0, 0, -1, 1};
+    const int dy[] = {1, -1, 0, 0};
+
+    while (!q.empty()) {
+        position now = q.front();
+        int x        = now.x;
+        int y        = now.y;
+        char c       = A[x][y];
+        int n        = B[x][y];
+        q.pop_front();
+
+        if (c == &apos;g&apos; &amp;&amp; n &lt;= 2) {
+            cout &lt;&lt; &quot;YES&quot; &lt;&lt; endl;
+            return 0;
+        }
+
+        for (int i = 0; i &lt; 4; i++) {
+            int x2 = x + dx[i];
+            int y2 = y + dy[i];
+            if (x2 &lt; 0 || x2 &gt;= H || y2 &lt; 0 || y2 &gt;= W) continue;
+
+            bool wall = (A[x2][y2] == &apos;#&apos;);
+            int dist  = n + wall;
+
+            if (dist &lt; B[x2][y2]) {
+                B[x2][y2] = dist;
+                if (wall)
+                    q.push_back({x2, y2});
+                else
+                    q.push_front({x2, y2});
+            }
+        }
+    }
+
+    cout &lt;&lt; &quot;NO&quot; &lt;&lt; endl;
+}</content>
+			</snippet>
+			<snippet>
+				<title>UnionFind</title>
+				<content>struct UnionFind {
+        // par[i]: iの親の番号　(例) par[3] = 99 : 3の親が99
+        // cnt[i]: 各枝に含まれる点の個数。
+        //         全部更新してるわけじゃないので、cnt[root[i]]を見に行くこと。
+    vector&lt;int&gt; par;
+    vector&lt;int&gt; cnt;
+
+    UnionFind(int N) : par(N), cnt(N) {  // 初期化
+        for (int i = 0; i &lt; N; i++) {
+            par[i] = i;
+            cnt[i] = 1;
+        }
+    }
+
+    void print() {
+        for (int i = 0; i &lt; par.size(); i++)
+            printf(&quot;par[%d] = %d\n&quot;, i, par[i]);
+
+        for (int i = 0; i &lt; par.size(); i++)
+            printf(&quot;cnt[%d] = %d\n&quot;, i, cnt[i]);
+    }
+
+    int root(int x) {
+        if (par[x] == x) return x;
+        return par[x] = root(par[x]);
+    }
+
+    void unite(int x, int y) {  // xとyの木を併合
+        int rx = root(x);
+        int ry = root(y);
+        if (rx == ry) return;
+        if (cnt[rx] &lt; cnt[ry]) {
+            par[rx] = ry;
+            cnt[ry] += cnt[rx];
+        } else {
+            par[ry] = rx;
+            cnt[rx] += cnt[ry];
+        }
+    }
+
+    bool same(int x, int y) {
+        int rx = root(x);
+        int ry = root(y);
+        return rx == ry;
+    }
+
+    int size() {
+        int N = par.size();
+        set&lt;int&gt; s;
+        for (int i = 0; i &lt; N; i++) {
+            s.insert(root(i));
+        }
+        return s.size();
+    }
+
+    int count(int x) {
+        return cnt[root(x)];
+    }
+};</content>
+			</snippet>
+			<snippet>
+				<title>並び替え付きstruct</title>
+				<content>struct P {
+    int a;
+    int b;
+
+    bool operator&lt;(const P &amp;another) const {
+        if (b == another.b)
+            return a &lt; another.a;
+        else
+            return b &lt; another.b;
+    };
+};</content>
+			</snippet>
+			<snippet>
+				<title>文字の置換 replace</title>
+				<content>replace(a.begin(), a.end(), &apos;?&apos;, &apos;a&apos;);</content>
+			</snippet>
+			<snippet>
+				<title>組み合わせ nCk</title>
+				<content>// 下記で初期化 1000009くらいが最大か
+// → combination nCk(1000009);
+// そのあとは自由に使える
+// → nCk(100,3) → 161700
+
+struct combination {
+    vector&lt;mint&gt; fact, ifact;
+    combination(int n) : fact(n + 1), ifact(n + 1) {
+        assert(n &lt; MOD);
+        fact[0] = 1;
+        for (int i = 1; i &lt;= n; ++i)
+            fact[i] = fact[i - 1] * i;
+        ifact[n] = fact[n].inv();
+        for (int i = n; i &gt;= 1; --i)
+            ifact[i - 1] = ifact[i] * i;
+    }
+    mint operator()(int n, int k) {
+        if (k &lt; 0 || k &gt; n) return 0;
+        return fact[n] * ifact[k] * ifact[n - k];
+    }
+};</content>
+			</snippet>
+			<snippet>
+				<title>小数点以下9桁出す場合</title>
+				<content>cout &lt;&lt; fixed &lt;&lt; setprecision(9);
+
+// printf(&quot;%.9f\n&quot;,sum * 2 / N);</content>
+			</snippet>
+			<snippet>
+				<title>巨大な数値を2,3,5で割り切る</title>
+				<content>    ll D;
+    cin &gt;&gt; D;
+    int yakuD2 = 0;
+    int yakuD3 = 0;
+    int yakuD5 = 0;
+
+    while (D % 2 == 0)
+        D /= 2, yakuD2++;
+    while (D % 3 == 0)
+        D /= 3, yakuD3++;
+    while (D % 5 == 0)
+        D /= 5, yakuD5++;
+</content>
+			</snippet>
+			<snippet>
+				<title>配列の一致判定</title>
+				<content>if (equal(P.cbegin(), P.cend(), A.cbegin())){
+	// 配列が一致
+} else {
+	// 配列が不一致
+}</content>
+			</snippet>
+			<snippet>
+				<title>配列のコピー</title>
+				<content>// 配列PをAにコピーする
+copy(all(P), A.begin());</content>
+			</snippet>
+			<snippet>
+				<title>map 全列挙</title>
+				<content>    for (const auto e : m) {
+        debug(e.first);
+        debug(e.second);
+    }</content>
+			</snippet>
+			<snippet>
+				<title>4重の配列の中身printf</title>
+				<content>    rep(n, N) rep(s, S) rep(t, T) rep(f, F) {
+        printf(&quot;dp[%d][%d][%d][%d] = %f\n&quot;, n, s, t, f, dp[n][s][t][f]);
+    }</content>
+			</snippet>
+			<snippet>
+				<title>next_permutation</title>
+				<content>    vector&lt;int&gt; v(N);
+
+    // [0, 1, 2, 3, 4, ...] 組み合わせの元となる連番
+    // 「原始関数ι（イオタ）」に由来する
+    iota(v.begin(), v.end(), 0);
+
+    do {
+        rep(i, N) cout &lt;&lt; v[i] &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; endl;
+    } while (next_permutation(v.begin(), v.end()));
+}</content>
+			</snippet>
+			<snippet>
+				<title>2点間の距離 distance</title>
+				<content>double distance(double x1, double x2, double y1, double y2) {
+    double dx = x2 - x1;
+    double dy = y2 - y1;
+    return sqrt(dx * dx + dy * dy);
+}</content>
+			</snippet>
+			<snippet>
+				<title>gcdとlcm</title>
+				<content>ll gcd(ll a,ll b){return b?gcd(b,a%b):a;}
+ll lcm(ll a,ll b){return a/gcd(a,b)*b;}</content>
+			</snippet>
+			<snippet>
+				<title>gcd</title>
+				<content>    auto gcd = [](int a, int b){
+        while(1){
+            swap(a,b);
+            if(b == 0) return a;
+            a%=b;
+        }
+    };
+</content>
+			</snippet>
+			<snippet>
+				<title>lcm</title>
+				<content>auto lcm = [gcd](int a,int b){
+      return a * b / gcd(a,b); 
+};</content>
+			</snippet>
+			<snippet>
+				<title>素因数分解</title>
+				<content>struct Sieve {
+    int n;
+    vector&lt;int&gt; f, primes;
+    Sieve(int n = 1) : n(n), f(n + 1) {
+        f[0] = f[1] = -1;
+        for (ll i = 2; i &lt;= n; ++i) {
+            if (f[i]) continue;
+            primes.push_back(i);
+            f[i] = i;
+            for (ll j = i * i; j &lt;= n; j += i) {
+                if (!f[j]) f[j] = i;
+            }
+        }
+    }
+    bool isPrime(int x) {
+        return f[x] == x;
+    }
+    vector&lt;int&gt; factorList(int x) {
+        vector&lt;int&gt; res;
+        while (x != 1) {
+            res.push_back(f[x]);
+            x /= f[x];
+        }
+        return res;
+    }
+    vector&lt;pair&lt;int, int&gt;&gt; factor(int x) {
+        vector&lt;int&gt; fl = factorList(x);
+        if (fl.size() == 0) return {};
+        vector&lt;pair&lt;int, int&gt;&gt; res(1, pair&lt;int, int&gt;(fl[0], 0));
+        for (int p : fl) {
+            if (res.back().first == p) {
+                res.back().second++;
+            } else {
+                res.emplace_back(p, 1);
+            }
+        }
+        return res;
+    }
+};
+
+
+// main内で、「Sieve sieve(1e6);」等で初期化
+//
+// こうやって使う
+//  for(auto e:sieve.factor(2020)){
+//            cout &lt;&lt; e.first &lt;&lt; &quot; &quot; &lt;&lt; e.second &lt;&lt; endl;
+//  }
+// ↓
+// 2 2
+// 5 1
+// 101 1
+//
+</content>
+			</snippet>
+			<snippet>
+				<title>mint MOD計算</title>
+				<content>const ll MOD = 1000000007;
+
+struct mint {
+    ll x;  // cout &lt;&lt; ans.x &lt;&lt; endl; で出力する
+    mint(ll x = 0) : x((x % MOD + MOD) % MOD) {
+    }
+    mint operator-() const {
+        return mint(-x);
+    }
+    mint &amp;operator+=(const mint a) {
+        if ((x += a.x) &gt;= MOD) x -= MOD;
+        return *this;
+    }
+    mint &amp;operator-=(const mint a) {
+        if ((x += MOD - a.x) &gt;= MOD) x -= MOD;
+        return *this;
+    }
+    mint &amp;operator*=(const mint a) {
+        (x *= a.x) %= MOD;
+        return *this;
+    }
+    mint operator+(const mint a) const {
+        mint res(*this);
+        return res += a;
+    }
+    mint operator-(const mint a) const {
+        mint res(*this);
+        return res -= a;
+    }
+    mint operator*(const mint a) const {
+        mint res(*this);
+        return res *= a;
+    }
+    mint pow(ll t) const {
+        if (!t) return 1;
+        mint a = pow(t/2);
+        a *= a;
+        if (t &amp; 1) a *= *this;
+        return a;
+    }
+
+    // for prime MOD
+    mint inv() const {
+        return pow(MOD - 2);
+    }
+    mint &amp;operator/=(const mint a) {
+        return (*this) *= a.inv();
+    }
+    mint operator/(const mint a) const {
+        mint res(*this);
+        return res /= a;
+    }
+};
+
+ostream &amp;operator&lt;&lt;(ostream &amp;os, const mint &amp;a) {
+    return os &lt;&lt; a.x;
+}
+</content>
+			</snippet>
+			<snippet>
+				<title>正規表現 文字列</title>
+				<content>smatch smatch;
+bool A = regex_search(S, smatch, regex(&quot;^A&quot;));</content>
+			</snippet>
+			<snippet>
+				<title>bitの先頭の0削除</title>
+				<content>// bitの先頭の0削除
+        string b = rec(N, 0).to_string();
+        int top = b.find(&quot;1&quot;);
+        cout &lt;&lt; b.substr(top) &lt;&lt; endl;</content>
+			</snippet>
+			<snippet>
+				<title>3進数処理</title>
+				<content>// Nこの要素を3グループに分ける全通りdfs
+
+vector&lt;vector&lt;int&gt;&gt; g(3);
+void dfs(int now) {
+    if (now == N) {
+       // 終了処理
+        return;
+    }
+    for (int i = 0; i &lt; 3; i++) {
+        g[i].push_back(now);
+        dfs(now + 1);
+        g[i].pop_back();
+    }
+}</content>
+			</snippet>
+			<snippet>
+				<title>2で割り切れる回数を返す関数</title>
+				<content>int f(int x){
+	int ans = 0;
+	while(x%2 == 0){
+		x /= 2;
+		ans++;
+	}
+	return ans;
+}</content>
+			</snippet>
+			<snippet>
+				<title>トポロジカルソートの例</title>
+				<content>#include &lt;bits/stdc++.h&gt;
+#define rep(i, n) for (int i = 0; i &lt; (n); i++)
+#define all(x) (x).begin(), (x).end()
+using ll = long long;
+using namespace std;
+template &lt;typename T&gt;
+using vec = std::vector&lt;T&gt;;
+
+int dfs(int n, vec&lt;vec&lt;int&gt;&gt; &amp;from, vec&lt;int&gt; &amp;c, vec&lt;bool&gt; &amp;visited) {
+    if (c[n] != -1) return c[n];
+    if (visited[n]) return -1;
+    visited[n]   = true;
+    int tmpOrder = -1;
+    for (auto e : from[n]) {
+        int tmp = dfs(e, from, c, visited);
+        if (tmp == -1) return -1;
+        tmpOrder = max(tmpOrder, tmp + 1);
+    }
+    if (tmpOrder == -1)
+        c[n] = 1;
+    else
+        c[n] = tmpOrder;
+    return c[n];
+}
+
+int main() {
+    int N;
+    cin &gt;&gt; N;
+    vec&lt;vec&lt;int&gt;&gt; A(N, vec&lt;int&gt;(N - 1));
+    rep(i, N) rep(j, N - 1) {
+        cin &gt;&gt; A[i][j];
+        --A[i][j];
+    }
+
+    vec&lt;vec&lt;int&gt;&gt; gameid(N, vec&lt;int&gt;(N, -1));
+    int now = 0;
+    rep(i, N) rep(j, N) {
+        if (i == j || i &gt;= j) continue;
+        gameid[i][j] = now;
+        ++now;
+    }
+
+    vec&lt;vec&lt;int&gt;&gt; games(N, vec&lt;int&gt;(N - 1));
+    rep(i, N) rep(j, N - 1) {
+        int aa = i;
+        int vs = A[i][j];
+        if (aa &gt; vs) swap(aa, vs);
+        games[i][j] = gameid[aa][vs];
+    }
+
+    vec&lt;vec&lt;int&gt;&gt; from(now, vec&lt;int&gt;());
+    rep(i, N) rep(j, N - 2) {
+        from[games[i][j + 1]].push_back(games[i][j]);
+    }
+
+    vec&lt;int&gt; c(now, -1);
+    vec&lt;bool&gt; visited(now, false);
+    int ans = 0;
+    rep(i, now) {
+        int sortOrder = dfs(i, from, c, visited);
+        if (sortOrder == -1) {
+            cout &lt;&lt; -1 &lt;&lt; endl;
+            return 0;
+        }
+        ans = max(ans, sortOrder);
+    }
+
+    cout &lt;&lt; ans &lt;&lt; endl;
+}</content>
+			</snippet>
+			<snippet>
+				<title>debug</title>
+				<content>#define debug(x) cout &lt;&lt; #x &lt;&lt; &quot;=&quot; &lt;&lt; x &lt;&lt; endl;
+#define vdebug(v) \
+    { \
+        cout &lt;&lt; #v &lt;&lt; &quot;=&quot; &lt;&lt; endl; \
+        rep(i_debug, v.size()) { \
+            cout &lt;&lt; v[i_debug] &lt;&lt; &quot;,&quot;; \
+        } \
+        cout &lt;&lt; endl; \
+    }
+#define mdebug(m) \
+    { \
+        cout &lt;&lt; #m &lt;&lt; &quot;=&quot; &lt;&lt; endl; \
+        rep(i_debug, m.size()) { \
+            rep(j_debug, m[i_debug].size()) { \
+                cout &lt;&lt; m[i_debug][j_debug] &lt;&lt; &quot;,&quot;; \
+            } \
+            cout &lt;&lt; endl; \
+        } \
+    }</content>
+			</snippet>
+		</snippets>
+	</folder>
+	<folder>
+		<title>コマンド</title>
+		<snippets>
+			<snippet>
+				<title>od -tx1 -a</title>
+				<content>od -tx1 -a </content>
+			</snippet>
+		</snippets>
+	</folder>
+</folders>
