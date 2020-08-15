@@ -1,7 +1,7 @@
 {
-	"QQQ": {
-		"prefix": "QQQ",
-		"body": ["QQQ"]
+	"n": {
+		"prefix": "/n",
+		"body": ["<< '\\n';"]
 	},
 	"stdin": {
 		"prefix": "stdin",

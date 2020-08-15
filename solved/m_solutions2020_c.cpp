@@ -6,18 +6,17 @@ using namespace std;
 template <typename T> using vec = std::vector<T>;
 
 int main() {
-    ll N, K;
+    int N, K;
     cin >> N >> K;
     
-    vec<ll> A(N);
-
+    vec<int> A(N);
     rep(i, N) cin >> A[i];
 
-    for(int i=K;i<N;++i){
-        if(A[i] != A[i-K] && A[i]/A[i-K] >= 1){
-            cout << "Yes" << endl;
+    for(int i=0;i<N-K;++i){
+        if(A[K+i]>A[i]){
+            cout << "Yes" << '\n';
         } else {
-            cout << "No" << endl;
+            cout << "No" << '\n';
         }
     }
 }
