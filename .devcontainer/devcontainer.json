@@ -4,6 +4,7 @@
     "service": "atcoder",
     "extensions": [
         "ms-vscode.cpptools",
+        "ms-python.python",
         "vector-of-bool.cmake-tools",
         "twxs.cmake",
         "tabnine.tabnine-vscode"

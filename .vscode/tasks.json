@@ -7,7 +7,6 @@
       "args": [
         "-g",
         "${file}"
-        // "${fileDirname}/${fileBasenameNoExtension}"
       ],
       "options": {
         "cwd": "/usr/local/bin"
@@ -31,7 +30,10 @@
       "group": {
         "kind": "build",
         "isDefault": true
-      }
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
     }
   ],
   "version": "2.0.0"
