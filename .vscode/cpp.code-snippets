@@ -1,4 +1,8 @@
 {
+	"cout": {
+		"prefix": "cout",
+		"body": ["cout << $1 << '\\n';"]
+	},
 	"n": {
 		"prefix": "/n",
 		"body": ["<< '\\n';"]
@@ -213,13 +217,6 @@
 			"#define debug(x) cout << #x << \"=\" << x << endl;",
 			"#define vdebug(v) { cout << #v << \"=\" << endl; rep(i_debug, v.size()) { cout << v[i_debug] << \",\";}cout << endl; }",
 			"#define mdebug(m) { cout << #m << \"=\" << endl; rep(i_debug, m.size()) { rep(j_debug, m[i_debug].size()) { cout << m[i_debug][j_debug] << \",\"; } cout << endl; } }",
-		]
-	},
-	"cout": {
-		"prefix": "cout",
-		"description": "標準出力",
-		"body": [
-			"cout << ${1:ans} << endl;"
 		]
 	},
 	"rep": {

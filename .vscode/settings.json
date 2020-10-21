@@ -74,9 +74,16 @@
     "thread": "cpp",
     "typeindex": "cpp",
     "typeinfo": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "__bit_reference": "cpp",
+    "__hash_table": "cpp",
+    "__split_buffer": "cpp",
+    "__tree": "cpp",
+    "filesystem": "cpp",
+    "span": "cpp",
+    "ranges": "cpp"
   },
   "C_Cpp.errorSquiggles": "Enabled",
-  "python.linting.enabled": "True",
+  "python.linting.enabled": true,
   "python.pythonPath": "/usr/bin/python3.8"
 }
