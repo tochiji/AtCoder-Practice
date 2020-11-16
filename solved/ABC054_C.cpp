@@ -1,42 +1,38 @@
 #include <bits/stdc++.h>
-#define rep(i,n) for(int i=0;i<(n);i++)
+#define rep(i, n) for (ll i = 0; i < (n); i++)
+#define all(x) (x).begin(), (x).end()
+using ll = long long;
 using namespace std;
+template <typename T> using vec = std::vector<T>;
 
-int N,M;
-int ans = 0;
-vector<vector<int>> G;
-
-void dfs(int now, unsigned int bits){
-  bits |= (1<<now);
-
-  if(__builtin_popcount(bits) == N) {
-    ans += 1;
-    return;
-  }
-
-  for(auto e:G[now]){
-    if(!(bits & (1<<e))){
-      dfs(e,bits);
+int main() {
+    int N, M;
+    cin >> N >> M;
+    
+    vec<vec<int>> G(N);
+    rep(i, M){
+        int a,b;
+        cin >> a >> b;
+        --a,--b;
+        G[a].push_back(b);
+        G[b].push_back(a);
     }
-  }
 
-}
+    int ans = 0;
+    function<void(int,int,vec<bool>)> dfs = [&](int now,int count ,vec<bool> v){
+        v[now] = true;
+        ++count;
+        if(count == N) {
+            ++ans;
+            return;
+        }
+        for(auto e:G[now]){
+            if(v[e]) continue;
+            dfs(e,count,v);
+        }
 
-int main(){
+    };
 
-  cin >> N >> M;
-  G.resize(N);
-
-  rep(i,M){
-    int from,to;
-    cin >> from >> to;
-    from--;to--;
-
-    G[from].push_back(to);
-    G[to].push_back(from);
-  }
-
-  dfs(0,0b00000000);
-  cout << ans << endl;
-
+    dfs(0,0,vec<bool>(N,false));
+    cout << ans << '\n';
 }

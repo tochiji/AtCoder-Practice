@@ -6,17 +6,17 @@ using namespace std;
 template <typename T> using vec = std::vector<T>;
 
 int main() {
-    int N, K;
-    cin >> N >> K;
+    int N;
+    cin >> N;
     
     vec<int> A(N);
     rep(i, N) cin >> A[i];
 
-    for(int i=0;i<N-K;++i){
-        if(A[K+i]>A[i]){
-            cout << "Yes" << '\n';
-        } else {
-            cout << "No" << '\n';
-        }
+    ll ans = 0;
+    ll before = A[0];
+    rep(i,N){
+        if(A[i]<before) ans+=(before-A[i]),A[i]=before;
+        before = A[i];
     }
+    cout << ans << '\n';
 }
