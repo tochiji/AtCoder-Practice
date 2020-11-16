@@ -1,8 +1,4 @@
 {
-	"QQQ": {
-		"prefix": "QQQ",
-		"body": ["QQQ"]
-	},
 	"stdin": {
 		"prefix": "stdin",
 		"body": [
