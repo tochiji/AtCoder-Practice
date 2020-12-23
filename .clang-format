@@ -12,7 +12,7 @@ AlignTrailingComments: true
 # 改行に関する設定
 AllowAllParametersOfDeclarationOnNextLine: true
 AllowShortCaseLabelsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: None
+AllowShortFunctionsOnASingleLine: All
 AllowShortIfStatementsOnASingleLine: Always
 AllowShortBlocksOnASingleLine : true
 AllowShortLoopsOnASingleLine: false

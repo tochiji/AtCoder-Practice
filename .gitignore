@@ -2,6 +2,7 @@
 data
 a.out
 in_*
+out_*
 *.dSYM
 abc*/
 arc*/
