@@ -219,6 +219,20 @@
 			"#define mdebug(m) { cout << #m << \"=\" << endl; rep(i_debug, m.size()) { rep(j_debug, m[i_debug].size()) { cout << m[i_debug][j_debug] << \",\"; } cout << endl; } }",
 		]
 	},
+	"dfs": {
+		"prefix": "dfs",
+		"body": [
+			"function<void(int, int)> dfs = [&](int i, int par) {",
+			"    for (auto e : G[i]) {",
+			"        int next = e.first;",
+			"        int dist = e.second;",
+			"        if (next == par) continue;",
+			"",
+			"        dfs(next, i);",
+			"    }",
+			"};"
+		]
+	},
 	"rep": {
 		"prefix": "rep",
 		"description": "繰り返し",
