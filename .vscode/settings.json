@@ -96,7 +96,8 @@
     "ios": "cpp",
     "locale": "cpp",
     "queue": "cpp",
-    "stack": "cpp"
+    "stack": "cpp",
+    "all": "cpp"
   },
   "C_Cpp.errorSquiggles": "Enabled",
   "python.linting.enabled": true,
