@@ -1,7 +1,7 @@
 #include <atcoder/all>
 #include <bits/stdc++.h>
 #define rep(i, n) for (ll i = 0; i < (n); i++)
-#define rrep(i, n) for (ll i = (n); i >= 0; i--)
+#define fore(i, a) for (ll i = 0; i < a.size(); i++)
 #define all(x) (x).begin(), (x).end()
 using namespace std;
 using namespace atcoder;
