@@ -1,7 +1,7 @@
 #include <atcoder/all>
 #include <bits/stdc++.h>
 #define rep(i, n) for (ll i = 0; i < (n); i++)
-#define fore(i, a) for (ll i = 0; i < a.size(); i++)
+#define fore(v, i, a) for (ll i = 0, auto v = a[i]; i < a.size(); i++, v = a[i])
 #define all(x) (x).begin(), (x).end()
 using namespace std;
 using namespace atcoder;
