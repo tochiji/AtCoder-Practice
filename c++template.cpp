@@ -1,10 +1,6 @@
 #include <atcoder/all>
 #include <bits/stdc++.h>
 #define rep(i, n) for (ll i = 0; i < (n); i++)
-#define fore(v, i, a) \
-    ll i; \
-    __typeof__(a.back()) v; \
-    for (i = 0, v = a[i]; i < a.size(); i++, v = a[i])
 #define all(x) (x).begin(), (x).end()
 using namespace std;
 using namespace atcoder;
@@ -13,7 +9,6 @@ using Pl = pair<ll, ll>;
 
 template <typename T> using vec   = std::vector<T>;
 template <typename T> using vvec  = std::vector<vector<T>>;
-template <typename T> using vvvec = std::vector<vector<vector<T>>>;
 template <class T> void chmax(T &a, T b) { (a < b) && (a = b); }
 template <class T> void chmin(T &a, T b) { (a > b) && (a = b); }
 
